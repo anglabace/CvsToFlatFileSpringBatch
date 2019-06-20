@@ -1,7 +1,7 @@
 package application.domaine;
 
 public class Student {
-    private int id;
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
@@ -17,7 +17,7 @@ public class Student {
         this.age = age;
     }
 
-    public Student(int id, String firstName, String lastName, String email, int age) {
+    public Student(String id, String firstName, String lastName, String email, int age) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,7 +38,7 @@ public class Student {
                 '}';
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -58,7 +58,7 @@ public class Student {
         return age;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

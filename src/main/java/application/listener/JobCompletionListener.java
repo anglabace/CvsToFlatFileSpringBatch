@@ -28,7 +28,7 @@ public class JobCompletionListener extends JobExecutionListenerSupport {
             log.info("============ JOB FINISHED ============ Verifying the results....\n");
 
             List<Student> results = jdbcTemplate.query("SELECT id, firstName, lastName FROM student", (rs, row)
-                    -> new Student(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getInt(5)));
+                    -> new Student(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getInt(5)));
 
             for (Student student : results) {
                 log.info("Discovered <" + student + "> in the database.");
