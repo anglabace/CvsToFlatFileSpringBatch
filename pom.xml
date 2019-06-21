@@ -35,20 +35,12 @@
         </dependency>
         <!-- Spring batch dependency END -->
 
-        <!-- h2db dependency START -->
+        <!-- hsqldb embedded used here, if not want use database -->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>runtime</scope>
         </dependency>
-
-        <!-- Below dependency act as the h2 db client -->
-        <!-- URL to access the web client: http://localhost:9000/h2-console/login.do
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
-        h2db dependency END -->
     </dependencies>
 
     <build>

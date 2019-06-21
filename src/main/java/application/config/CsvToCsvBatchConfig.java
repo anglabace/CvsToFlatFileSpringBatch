@@ -43,7 +43,7 @@ public class CsvToCsvBatchConfig {
 
     //----- Reader ------
     @Bean
-    private ItemReader<Student> csvStudentItemReader() {
+    ItemReader<Student> csvStudentItemReader() {
         //Create reader instance
         FlatFileItemReader<Student> reader = new FlatFileItemReader<>();
         //Declare input resource
@@ -71,13 +71,13 @@ public class CsvToCsvBatchConfig {
 
     // ------ Processor ------
     @Bean
-    private ItemProcessor<Student, Student>csvStudentFormatProcessor() {
+    ItemProcessor<Student, Student>csvStudentFormatProcessor() {
         return new StudentFormatProcessor();
     }
 
     // ------ Writer ------
     @Bean
-    private FlatFileItemWriter<Student> csvItemWriter() {
+    FlatFileItemWriter<Student> csvItemWriter() {
         //Create writer instance
         FlatFileItemWriter<Student> writer = new FlatFileItemWriter<>();
 
@@ -90,13 +90,8 @@ public class CsvToCsvBatchConfig {
         //separer chaque attributs par ,
         DelimitedLineAggregator<Student> delLineAgg = new DelimitedLineAggregator<>();
         delLineAgg.setDelimiter(",");
-        //name field values base sur object
-        BeanWrapperFieldExtractor<Student> fieldExtractor = new BeanWrapperFieldExtractor<>();
-        fieldExtractor.setNames(new String[] {"firstName","lastName", "email", "age" });
-        delLineAgg.setFieldExtractor(fieldExtractor);
-        writer.setLineAggregator(delLineAgg);
 
-        /*Name field values sequence based on object properties
+        //Name field values sequence based on object properties
         writer.setLineAggregator(new DelimitedLineAggregator<Student>() {
             {
                 setDelimiter(",");
@@ -106,7 +101,7 @@ public class CsvToCsvBatchConfig {
                     }
                 });
             }
-        });*/
+        });
         return writer;
     }
 
@@ -114,14 +109,14 @@ public class CsvToCsvBatchConfig {
 
     // ----------  listener ------
     @Bean
-    private JobExecutionListener CsvToFlatFileJobListener() {
+    JobExecutionListener CsvToFlatFileJobListener() {
         return new CsvToFlatFileJobCompletionListener();
     }
 
 
     // ------  begin job info ------
     @Bean
-    private Step csvToFlatFileStep() {
+    Step csvToFlatFileStep() {
             return stepBuilderFactory
                     .get("csvToFlatFileStep")
                     .<Student, Student>chunk(5)
