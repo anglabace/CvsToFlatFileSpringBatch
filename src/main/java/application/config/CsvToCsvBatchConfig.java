@@ -53,13 +53,13 @@ public class CsvToCsvBatchConfig {
         //Configure how each line will be parsed and mapped to different values
         reader.setLineMapper(new DefaultLineMapper<Student>() {
             {
-            //3 columns in each row
+            //columns in each row
                 setLineTokenizer(new DelimitedLineTokenizer() {
                     {
                     setNames("firstName","lastName", "email", "age");
                 }
                 });
-            //Set values in Employee class
+            //Set values in objet class
                 setFieldSetMapper(new BeanWrapperFieldSetMapper<Student>() {{
                     setTargetType(Student.class);
                 }
